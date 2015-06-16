@@ -21,7 +21,7 @@ namespace Tesla.CM.CommonHelper
         /// Retrieve data from XLS file
         /// </summary>
         /// <param name="containingFolder"></param>
-        /// <param name="csvFileName"></param>
+        /// <param name="xlsFileName"></param>
         /// <returns></returns>
         public static System.Data.DataTable GetXlsDataSource(string containingFolder, string xlsFileName)
         {
