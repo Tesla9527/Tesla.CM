@@ -30,7 +30,6 @@ namespace Tesla.CM.Modules
             String folderName = Report.getreportname();
             Report.UpdateTestLogTitle(methodName);
 
-            //var cmDemoLink = driver.FindElement(By.XPath("html/body/div[1]/div/div[1]/a"));
             var cmDemoLink = uiMapper.GetElement("HomePage", "CMDemoLink");
             cmDemoLink.Click();           
         }
