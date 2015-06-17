@@ -13,6 +13,10 @@ namespace Tesla.CM.Modules
     public class LoginPage
     {
         FirefoxDriver driver;
+
+        UIMapHelper uiMapper = new UIMapHelper();
+        
+
         public FirefoxDriver getDriver()
         {
             return driver;
@@ -21,9 +25,11 @@ namespace Tesla.CM.Modules
         public void setDriver(FirefoxDriver driver)
         {
             this.driver = driver;
-        }	 	
+        }
+
         public void LoginCM()
         {
+            uiMapper.setDriver(driver);
             String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             String folderName = Report.getreportname();
             Report.UpdateTestLogTitle(methodName);
@@ -36,13 +42,13 @@ namespace Tesla.CM.Modules
             // Go to the home page
             driver.Navigate().GoToUrl("https://contactmanager9527.azurewebsites.net/");
 
-            var loginLink = driver.FindElement(By.Id("loginLink"));
+            var loginLink = uiMapper.GetElement("LoginPage", "LoginLink");
             loginLink.Click();
 
             // Get the page elements          
-            var emailField = driver.FindElement(By.Id("Email"));
-            var passwordField = driver.FindElement(By.Id("Password"));
-            var loginButtonField = driver.FindElement(By.XPath(".//*[@id='loginForm']/form/div[4]/div/input"));
+            var emailField = uiMapper.GetElement("LoginPage", "EmailField");
+            var passwordField = uiMapper.GetElement("LoginPage", "PasswordField");
+            var loginButtonField = uiMapper.GetElement("LoginPage", "LoginButtonField");
 
             // Type email and password and click the login button        
             emailField.SendKeys(email);

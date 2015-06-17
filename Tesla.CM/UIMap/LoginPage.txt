@@ -1,0 +1,22 @@
+﻿{  
+   "LoginLink":
+   {  
+      "Type":"Id",
+      "Value":"loginLink"
+   },
+   "EmailField":
+   {  
+      "Type":"Id",
+      "Value":"Email"
+   },
+    "PasswordField":
+   {  
+      "Type":"Id",
+      "Value":"Password"
+   },
+      "LoginButtonField":
+   {  
+      "Type":"XPath",
+      "Value":".//*[@id='loginForm']/form/div[4]/div/input"
+   }
+}

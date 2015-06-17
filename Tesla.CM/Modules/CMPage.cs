@@ -13,6 +13,7 @@ namespace Tesla.CM.Modules
     public class CMPage
     {
         FirefoxDriver driver;
+        UIMapHelper uiMapper = new UIMapHelper();
         public FirefoxDriver getDriver()
         {
             return driver;
@@ -24,6 +25,7 @@ namespace Tesla.CM.Modules
         }
         public void AddContact()
         {
+            uiMapper.setDriver(driver);
             String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             String folderName = Report.getreportname();
             Report.UpdateTestLogTitle(methodName);
@@ -37,16 +39,17 @@ namespace Tesla.CM.Modules
             string zip = dt.Rows[0]["Zip"].ToString();
             string email = dt.Rows[0]["Email"].ToString();
 
-            var addContactLink = driver.FindElement(By.XPath("html/body/div[2]/p/a"));
+            var addContactLink = uiMapper.GetElement("CMPage", "addContactLink");
             addContactLink.Click();
 
             // Get the page elements          
-            var nameField = driver.FindElement(By.Id("Name"));
-            var addressField = driver.FindElement(By.Id("Address"));
-            var cityField = driver.FindElement(By.Id("City"));
-            var stateField = driver.FindElement(By.Id("State"));
-            var zipField = driver.FindElement(By.Id("Zip"));
-            var emailField = driver.FindElement(By.Id("Email"));
+            var nameField = uiMapper.GetElement("CMPage", "nameField");
+            var addressField = uiMapper.GetElement("CMPage", "addressField");
+            var cityField = uiMapper.GetElement("CMPage", "cityField");
+            var stateField = uiMapper.GetElement("CMPage", "stateField");
+            var zipField = uiMapper.GetElement("CMPage", "zipField");
+            var emailField = uiMapper.GetElement("CMPage", "emailField");
+            var createButton = uiMapper.GetElement("CMPage", "createButton");
 
             // Input value in the fields and save 
             nameField.SendKeys(name);
@@ -55,8 +58,6 @@ namespace Tesla.CM.Modules
             stateField.SendKeys(state);
             zipField.SendKeys(zip);
             emailField.SendKeys(email);
-
-            var createButton = driver.FindElement(By.XPath("html/body/div[2]/form/div/div[7]/div/input"));
             createButton.Click();
         }
     }

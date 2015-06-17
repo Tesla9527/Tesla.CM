@@ -13,6 +13,7 @@ namespace Tesla.CM.Modules
     public class HomePage
     {
         FirefoxDriver driver;
+        UIMapHelper uiMapper = new UIMapHelper();
         public FirefoxDriver getDriver()
         {
             return driver;
@@ -24,21 +25,24 @@ namespace Tesla.CM.Modules
         }
         public void NavigateToCMPage()
         {
+            uiMapper.setDriver(driver);
             String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             String folderName = Report.getreportname();
             Report.UpdateTestLogTitle(methodName);
 
-            var cmDemoLink = driver.FindElement(By.XPath("html/body/div[1]/div/div[1]/a"));
+            //var cmDemoLink = driver.FindElement(By.XPath("html/body/div[1]/div/div[1]/a"));
+            var cmDemoLink = uiMapper.GetElement("HomePage", "CMDemoLink");
             cmDemoLink.Click();           
         }
 
         public void LogoutCM()
         {
+            uiMapper.setDriver(driver);
             String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             String folderName = Report.getreportname();
             Report.UpdateTestLogTitle(methodName);
 
-            var logoutLink = driver.FindElement(By.Id("logoutForm"));
+            var logoutLink = uiMapper.GetElement("HomePage", "logoutLink");
             logoutLink.Click();
         }
     }
