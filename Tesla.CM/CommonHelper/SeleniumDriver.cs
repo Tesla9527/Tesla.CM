@@ -13,7 +13,6 @@ namespace Tesla.CM.CommonHelper
     public class SeleniumDriver
     {
         private IWebDriver driver;
-       // private const string IE_DRIVER_PATH = @"C:\PathTo\IEDriverServer";
         public IWebDriver getDriver()
         {
             return driver;
