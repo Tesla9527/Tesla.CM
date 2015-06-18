@@ -16,8 +16,9 @@ C:\Users\Lin\Downloads\Tesla.CM-master\Tesla.CM\bin\Debug\Microsoft.VisualStudio
 C:\Users\Lin\Downloads\Tesla.CM-master\Tesla.CM\obj\Debug\Tesla.CM.dll
 C:\Users\Lin\Downloads\Tesla.CM-master\Tesla.CM\obj\Debug\Tesla.CM.pdb
 C:\Users\Lin\Downloads\Tesla.CM-master\Tesla.CM\obj\Debug\Tesla.CM.csprojResolveAssemblyReference.cache
-E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\IEDriverServer.exe
+E:\Automation\Tesla.CM\Tesla.CM\obj\Debug\Tesla.CM.pdb
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\chromedriver.exe
+E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\IEDriverServer.exe
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\Tesla.CM.dll.config
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\Tesla.CM.dll
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\Tesla.CM.pdb
@@ -40,4 +41,3 @@ E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestToo
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestTools.UITest.Extension.resources.dll
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestTools.UITest.Common.resources.dll
 E:\Automation\Tesla.CM\Tesla.CM\obj\Debug\Tesla.CM.dll
-E:\Automation\Tesla.CM\Tesla.CM\obj\Debug\Tesla.CM.pdb

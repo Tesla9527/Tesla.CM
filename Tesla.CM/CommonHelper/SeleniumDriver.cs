@@ -25,7 +25,9 @@ namespace Tesla.CM.CommonHelper
         {
             if ("firefox".Equals(ExcelHelper.GetAppConfig("Browser")))
             {
-                driver = new FirefoxDriver();
+                FirefoxProfileManager profileManager = new FirefoxProfileManager();
+                FirefoxProfile profile = profileManager.GetProfile("default");
+                driver = new FirefoxDriver(profile);
             }
             if ("ie".Equals(ExcelHelper.GetAppConfig("Browser")))
             {
