@@ -7,6 +7,7 @@ using Tesla.CM.CommonHelper;
 using System.Data;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tesla.CM.Modules
 {
@@ -23,13 +24,23 @@ namespace Tesla.CM.Modules
         /// </summary>
         public void NavigateToCMPage()
         {
-            //uiMapper.setDriver(driver);
-            String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            String folderName = Report.getreportname();
-            Report.UpdateTestLogTitle(methodName);
+            try
+            {
+                String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                String folderName = Report.getreportname();
+                Report.UpdateTestLogTitle(methodName);
 
-            var cmDemoLink = driverHelper.GetElement("HomePage", "CMDemoLink");
-            cmDemoLink.Click();           
+                var cmDemoLink = driverHelper.GetElement("HomePage", "CMDemoLink");
+                cmDemoLink.Click();
+
+                Assert.AreEqual(true,   driverHelper.GetElement("CMPage", "addContactLink").Displayed);
+                Report.UpdateTestLog("Navigate to contact manager page", "Navigate to contact manager page successfully", Report.Status.PASS);
+            }
+            catch
+            {
+                Report.UpdateTestLog("Navigate to contact manager page", "Navigate to contact manager page failed", Report.Status.FAIL);
+            }
+                    
         }
 
         /// <summary>
@@ -37,13 +48,22 @@ namespace Tesla.CM.Modules
         /// </summary>
         public void LogoutCM()
         {
-            //uiMapper.setDriver(driver);
-            String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            String folderName = Report.getreportname();
-            Report.UpdateTestLogTitle(methodName);
+            try
+            {
+                String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                String folderName = Report.getreportname();
+                Report.UpdateTestLogTitle(methodName);
 
-            var logoutLink = driverHelper.GetElement("HomePage", "logoutLink");
-            logoutLink.Click();
+                var logoutLink = driverHelper.GetElement("HomePage", "logoutLink");
+                logoutLink.Click();
+
+                Assert.AreEqual(true, driverHelper.GetElement("LoginPage", "LoginLink").Displayed);
+                Report.UpdateTestLog("Logout Contact manager", "Logout Contact manager successfully", Report.Status.PASS);
+            }
+            catch
+            {
+                Report.UpdateTestLog("Logout Contact manager", "Logout Contact manager failed", Report.Status.FAIL);
+            }            
         }
     }
 }

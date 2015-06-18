@@ -37,6 +37,6 @@ E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\Microsoft.VisualStudio.TestTools.UITes
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestTools.UITesting.resources.dll
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestTools.UITest.Extension.resources.dll
 E:\Automation\Tesla.CM\Tesla.CM\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestTools.UITest.Common.resources.dll
+E:\Automation\Tesla.CM\Tesla.CM\obj\Debug\Tesla.CM.csprojResolveAssemblyReference.cache
 E:\Automation\Tesla.CM\Tesla.CM\obj\Debug\Tesla.CM.dll
 E:\Automation\Tesla.CM\Tesla.CM\obj\Debug\Tesla.CM.pdb
-E:\Automation\Tesla.CM\Tesla.CM\obj\Debug\Tesla.CM.csprojResolveAssemblyReference.cache

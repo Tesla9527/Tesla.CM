@@ -6,8 +6,8 @@
    },
    "logoutLink":
    {  
-      "Type":"Id",
-      "Value":"logoutForm"
+      "Type":"XPath",
+      "Value":".//*[@id='logoutForm']/ul/li[2]/a"
    },
     "UserLink":
    {  

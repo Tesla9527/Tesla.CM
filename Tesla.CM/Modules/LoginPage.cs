@@ -52,11 +52,11 @@ namespace Tesla.CM.Modules
                 loginButtonField.Click();
 
                 Assert.AreEqual(true, driverHelper.GetElement("HomePage", "UserLink").Displayed);
-                Report.UpdateTestLog("Login contact manager page", "Login contact manager page successfully", Report.Status.PASS);
+                Report.UpdateTestLog("Login contact manager", "Login contact manager successfully", Report.Status.PASS);
             }
             catch
             {
-                Report.UpdateTestLog("Login contact manager page", "Login contact manager page failed", Report.Status.FAIL);
+                Report.UpdateTestLog("Login contact manager", "Login contact manager failed", Report.Status.FAIL);
             }
 
         }

@@ -16,7 +16,7 @@ namespace Tesla.CM
         {
             LoginPage.LoginCM();
             HomePage.NavigateToCMPage();
-            CMPage.AddContact();
+            CMPage.AddContact(0);
             HomePage.LogoutCM();
         }
 
