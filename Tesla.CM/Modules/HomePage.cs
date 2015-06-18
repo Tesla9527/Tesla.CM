@@ -12,17 +12,21 @@ namespace Tesla.CM.Modules
 {
     public class HomePage
     {
-        FirefoxDriver driver;
-        UIMapHelper uiMapper = new UIMapHelper();
-        public FirefoxDriver getDriver()
+        IWebDriver driver;       
+        public IWebDriver getDriver()
         {
             return driver;
         }
-
-        public void setDriver(FirefoxDriver driver)
+        public void setDriver(IWebDriver driver)
         {
             this.driver = driver;
         }
+
+        UIMapHelper uiMapper = new UIMapHelper();
+
+        /// <summary>
+        /// Navigate to contact manager page
+        /// </summary>
         public void NavigateToCMPage()
         {
             uiMapper.setDriver(driver);
@@ -34,6 +38,9 @@ namespace Tesla.CM.Modules
             cmDemoLink.Click();           
         }
 
+        /// <summary>
+        /// Logout contact manager
+        /// </summary>
         public void LogoutCM()
         {
             uiMapper.setDriver(driver);

@@ -12,17 +12,22 @@ namespace Tesla.CM.Modules
 {
     public class CMPage
     {
-        FirefoxDriver driver;
-        UIMapHelper uiMapper = new UIMapHelper();
-        public FirefoxDriver getDriver()
+        IWebDriver driver;       
+        public IWebDriver getDriver()
         {
             return driver;
         }
 
-        public void setDriver(FirefoxDriver driver)
+        public void setDriver(IWebDriver driver)
         {
             this.driver = driver;
         }
+
+        UIMapHelper uiMapper = new UIMapHelper();
+
+        /// <summary>
+        /// Add a new contact
+        /// </summary>
         public void AddContact()
         {
             uiMapper.setDriver(driver);

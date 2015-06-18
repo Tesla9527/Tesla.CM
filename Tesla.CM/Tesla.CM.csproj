@@ -72,6 +72,7 @@
     <Compile Include="CommonHelper\ExcelHelper.cs" />
     <Compile Include="CommonHelper\Report.cs" />
     <Compile Include="CommonHelper\ScreenshotHelper.cs" />
+    <Compile Include="CommonHelper\SeleniumDriver.cs" />
     <Compile Include="CommonHelper\UIMapHelper.cs" />
     <Compile Include="CommonHelper\Util.cs" />
     <Compile Include="Modules\CMPage.cs" />

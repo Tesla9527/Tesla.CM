@@ -21,8 +21,8 @@ namespace Tesla.CM
         }
 
         #region TestInitialize and TestCleanup
-
-        private FirefoxDriver driver;
+      
+        private IWebDriver driver;        
         private LoginPage LoginPage;
         private HomePage HomePage;
         private CMPage CMPage;
@@ -37,8 +37,9 @@ namespace Tesla.CM
         public void TestInitialize()
         {
            Initialize(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name);
-          // Initialize the Firefox Driver
-          driver = new FirefoxDriver();
+          // Initialize Driver
+          SeleniumDriver selenium = new SeleniumDriver();
+          driver = selenium.getDriver();
           driver.Manage().Window.Maximize();
           LoginPage = new LoginPage();
           LoginPage.setDriver(driver);
@@ -51,7 +52,7 @@ namespace Tesla.CM
         [TestCleanup]
         public void TestCleanup()
         {
-            // Close Firefox and quit driver
+            // Quit driver
             driver.Close();
             driver.Quit();
             CloseReport();

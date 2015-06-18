@@ -12,23 +12,27 @@ namespace Tesla.CM.CommonHelper
 {
     public class UIMapHelper
     {
-        FirefoxDriver driver;
-        public FirefoxDriver getDriver()
+        IWebDriver driver;
+        public IWebDriver getDriver()
         {
             return driver;
         }
-
-        public void setDriver(FirefoxDriver driver)
+        public void setDriver(IWebDriver driver)
         {
             this.driver = driver;
         }
-
         public class UIMap
         {
             public string Type { get; set; }
             public string Value { get; set; }
         }
 
+        /// <summary>
+        /// Get WebElement from UIMap
+        /// </summary>
+        /// <param name="uiMapFileName"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public IWebElement GetElement(string uiMapFileName, string key)
         {
             var collection = new Dictionary<string, UIMap>();  

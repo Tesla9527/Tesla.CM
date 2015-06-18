@@ -12,21 +12,21 @@ namespace Tesla.CM.Modules
 {
     public class LoginPage
     {
-        FirefoxDriver driver;
-
-        UIMapHelper uiMapper = new UIMapHelper();
-        
-
-        public FirefoxDriver getDriver()
+        IWebDriver driver;     
+        public IWebDriver getDriver() 
         {
             return driver;
         }
-
-        public void setDriver(FirefoxDriver driver)
+        public void setDriver(IWebDriver driver)
         {
             this.driver = driver;
         }
 
+        UIMapHelper uiMapper = new UIMapHelper();
+
+        /// <summary>
+        /// Login contact manager
+        /// </summary>
         public void LoginCM()
         {
             uiMapper.setDriver(driver);
