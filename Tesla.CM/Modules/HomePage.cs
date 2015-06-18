@@ -12,29 +12,23 @@ namespace Tesla.CM.Modules
 {
     public class HomePage
     {
-        IWebDriver driver;       
-        public IWebDriver getDriver()
+        DriverHelper driverHelper;
+        public HomePage(DriverHelper _driverHelper)
         {
-            return driver;
+            driverHelper = _driverHelper;
         }
-        public void setDriver(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-
-        UIMapHelper uiMapper = new UIMapHelper();
 
         /// <summary>
         /// Navigate to contact manager page
         /// </summary>
         public void NavigateToCMPage()
         {
-            uiMapper.setDriver(driver);
+            //uiMapper.setDriver(driver);
             String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             String folderName = Report.getreportname();
             Report.UpdateTestLogTitle(methodName);
 
-            var cmDemoLink = uiMapper.GetElement("HomePage", "CMDemoLink");
+            var cmDemoLink = driverHelper.GetElement("HomePage", "CMDemoLink");
             cmDemoLink.Click();           
         }
 
@@ -43,12 +37,12 @@ namespace Tesla.CM.Modules
         /// </summary>
         public void LogoutCM()
         {
-            uiMapper.setDriver(driver);
+            //uiMapper.setDriver(driver);
             String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             String folderName = Report.getreportname();
             Report.UpdateTestLogTitle(methodName);
 
-            var logoutLink = uiMapper.GetElement("HomePage", "logoutLink");
+            var logoutLink = driverHelper.GetElement("HomePage", "logoutLink");
             logoutLink.Click();
         }
     }

@@ -12,48 +12,51 @@ namespace Tesla.CM.Modules
 {
     public class LoginPage
     {
-        IWebDriver driver;     
-        public IWebDriver getDriver() 
+        DriverHelper driverHelper;
+        public LoginPage(DriverHelper _driverHelper)
         {
-            return driver;
+            driverHelper = _driverHelper;
         }
-        public void setDriver(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-
-        UIMapHelper uiMapper = new UIMapHelper();
 
         /// <summary>
         /// Login contact manager
         /// </summary>
         public void LoginCM()
         {
-            uiMapper.setDriver(driver);
-            String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            String folderName = Report.getreportname();
-            Report.UpdateTestLogTitle(methodName);
+            try
+            {
+                String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                String folderName = Report.getreportname();
+                Report.UpdateTestLogTitle(methodName);
 
-            // Test Data
-            DataTable dt = ExcelHelper.GetXlsDataSource(folderName, "LoginCM.xls");
-            string email = dt.Rows[0]["Email"].ToString();
-            string password = dt.Rows[0]["Password"].ToString();
+                // Test Data
+                DataTable dt = ExcelHelper.GetXlsDataSource(folderName, "LoginCM.xls");
+                string email = dt.Rows[0]["Email"].ToString();
+                string password = dt.Rows[0]["Password"].ToString();
 
-            // Go to the home page
-            driver.Navigate().GoToUrl("https://contactmanager9527.azurewebsites.net/");
+                // Go to the home page
+                driverHelper.Navigate().GoToUrl("https://contactmanager9527.azurewebsites.net/");
 
-            var loginLink = uiMapper.GetElement("LoginPage", "LoginLink");
-            loginLink.Click();
+                var loginLink = driverHelper.GetElement("LoginPage", "LoginLink");
+                loginLink.Click();
 
-            // Get the page elements          
-            var emailField = uiMapper.GetElement("LoginPage", "EmailField");
-            var passwordField = uiMapper.GetElement("LoginPage", "PasswordField");
-            var loginButtonField = uiMapper.GetElement("LoginPage", "LoginButtonField");
+                // Get the page elements          
+                var emailField = driverHelper.GetElement("LoginPage", "EmailField");
+                var passwordField = driverHelper.GetElement("LoginPage", "PasswordField");
+                var loginButtonField = driverHelper.GetElement("LoginPage", "LoginButtonField");
 
-            // Type email and password and click the login button        
-            emailField.SendKeys(email);
-            passwordField.SendKeys(password);
-            loginButtonField.Click();
+                // Type email and password and click the login button        
+                emailField.SendKeys(email);
+                passwordField.SendKeys(password);
+                loginButtonField.Click();
+
+                Report.UpdateTestLog("Login contact manager page", "Login contact manager page successfully", Report.Status.PASS);
+            }
+            catch
+            {
+                Report.UpdateTestLog("Login contact manager page", "Login contact manager page failed", Report.Status.FAIL);
+            }
+
         }
     }
 }

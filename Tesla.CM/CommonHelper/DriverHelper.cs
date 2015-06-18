@@ -10,16 +10,12 @@ using OpenQA.Selenium.Firefox;
 
 namespace Tesla.CM.CommonHelper
 {
-    public class UIMapHelper
+    public class DriverHelper
     {
         IWebDriver driver;
-        public IWebDriver getDriver()
+        public DriverHelper(IWebDriver _driver)
         {
-            return driver;
-        }
-        public void setDriver(IWebDriver driver)
-        {
-            this.driver = driver;
+            driver = _driver;
         }
         public class UIMap
         {
@@ -35,10 +31,10 @@ namespace Tesla.CM.CommonHelper
         /// <returns></returns>
         public IWebElement GetElement(string uiMapFileName, string key)
         {
-            var collection = new Dictionary<string, UIMap>();  
-            var collectionStr = File.ReadAllText(ExcelHelper.GetAppConfig("prefixUIMapPath") + "\\" + uiMapFileName + ".txt");  
-         
-            var obj = JsonConvert.DeserializeObject<Dictionary<string, UIMap>>(collectionStr);          
+            var collection = new Dictionary<string, UIMap>();
+            var collectionStr = File.ReadAllText(ExcelHelper.GetAppConfig("prefixUIMapPath") + "\\" + uiMapFileName + ".txt");
+
+            var obj = JsonConvert.DeserializeObject<Dictionary<string, UIMap>>(collectionStr);
             string type = obj[key].Type;
             string value = obj[key].Value;
             return driver.FindElement(this.getBy(type, value));
@@ -68,6 +64,11 @@ namespace Tesla.CM.CommonHelper
                 by = By.LinkText(value);
             }
             return by;
+        }
+
+        internal INavigation Navigate()
+        {
+            return driver.Navigate();
         }
     }
 }

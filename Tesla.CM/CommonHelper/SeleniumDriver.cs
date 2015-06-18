@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Chrome;
+using System.Reflection;
 
 namespace Tesla.CM.CommonHelper
 {

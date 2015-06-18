@@ -41,12 +41,10 @@ namespace Tesla.CM
           SeleniumDriver selenium = new SeleniumDriver();
           driver = selenium.getDriver();
           driver.Manage().Window.Maximize();
-          LoginPage = new LoginPage();
-          LoginPage.setDriver(driver);
-          HomePage = new HomePage();
-          HomePage.setDriver(driver);
-          CMPage = new CMPage();
-          CMPage.setDriver(driver);
+          var driverHelper = new DriverHelper(driver);
+          LoginPage = new LoginPage(driverHelper);
+          HomePage = new HomePage(driverHelper);
+          CMPage = new CMPage(driverHelper);
         }
 
         [TestCleanup]

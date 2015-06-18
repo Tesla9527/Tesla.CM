@@ -11,26 +11,17 @@ using OpenQA.Selenium.Firefox;
 namespace Tesla.CM.Modules
 {
     public class CMPage
-    {
-        IWebDriver driver;       
-        public IWebDriver getDriver()
+    {        
+        DriverHelper driverHelper;
+        public CMPage(DriverHelper _driverHelper)
         {
-            return driver;
+            driverHelper = _driverHelper;
         }
-
-        public void setDriver(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-
-        UIMapHelper uiMapper = new UIMapHelper();
-
         /// <summary>
         /// Add a new contact
         /// </summary>
         public void AddContact()
-        {
-            uiMapper.setDriver(driver);
+        { 
             String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             String folderName = Report.getreportname();
             Report.UpdateTestLogTitle(methodName);
@@ -44,17 +35,17 @@ namespace Tesla.CM.Modules
             string zip = dt.Rows[0]["Zip"].ToString();
             string email = dt.Rows[0]["Email"].ToString();
 
-            var addContactLink = uiMapper.GetElement("CMPage", "addContactLink");
+            var addContactLink = driverHelper.GetElement("CMPage", "addContactLink");
             addContactLink.Click();
 
             // Get the page elements          
-            var nameField = uiMapper.GetElement("CMPage", "nameField");
-            var addressField = uiMapper.GetElement("CMPage", "addressField");
-            var cityField = uiMapper.GetElement("CMPage", "cityField");
-            var stateField = uiMapper.GetElement("CMPage", "stateField");
-            var zipField = uiMapper.GetElement("CMPage", "zipField");
-            var emailField = uiMapper.GetElement("CMPage", "emailField");
-            var createButton = uiMapper.GetElement("CMPage", "createButton");
+            var nameField = driverHelper.GetElement("CMPage", "nameField");
+            var addressField = driverHelper.GetElement("CMPage", "addressField");
+            var cityField = driverHelper.GetElement("CMPage", "cityField");
+            var stateField = driverHelper.GetElement("CMPage", "stateField");
+            var zipField = driverHelper.GetElement("CMPage", "zipField");
+            var emailField = driverHelper.GetElement("CMPage", "emailField");
+            var createButton = driverHelper.GetElement("CMPage", "createButton");
 
             // Input value in the fields and save 
             nameField.SendKeys(name);
