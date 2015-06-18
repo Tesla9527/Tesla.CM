@@ -7,13 +7,13 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Chrome;
-using System.Reflection;
 
 namespace Tesla.CM.CommonHelper
 {
     public class SeleniumDriver
     {
         private IWebDriver driver;
+       // private const string IE_DRIVER_PATH = @"C:\PathTo\IEDriverServer";
         public IWebDriver getDriver()
         {
             return driver;
@@ -30,7 +30,7 @@ namespace Tesla.CM.CommonHelper
             }
             if ("ie".Equals(ExcelHelper.GetAppConfig("Browser")))
             {
-                driver = new InternetExplorerDriver();
+               driver = new InternetExplorerDriver();
             }
             if ("chrome".Equals(ExcelHelper.GetAppConfig("Browser")))
             {

@@ -83,7 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="TestData\_001_CheckAddCM\AddContact.xls" />
     <None Include="TestData\_001_CheckAddCM\LoginCM.xls" />
   </ItemGroup>
