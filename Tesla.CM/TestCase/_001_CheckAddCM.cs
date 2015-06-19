@@ -14,10 +14,18 @@ namespace Tesla.CM
         [TestMethod]
         public void _001__CheckAddCM()
         {
-            LoginPage.LoginCM();
-            HomePage.NavigateToCMPage();
-            CMPage.AddContact(0);
-            HomePage.LogoutCM();
+            try
+            {
+                LoginPage.LoginCM();
+                HomePage.NavigateToCMPage();
+                CMPage.AddContact(0);
+                HomePage.LogoutCM();
+            }
+            catch (Exception e)
+            {
+                Report.UpdateTestLog("Error message is caught in TC - " + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name, e.Message, Report.Status.FAIL);
+                throw new Exception(e.Message);            
+            }           
         }
 
         #region TestInitialize and TestCleanup

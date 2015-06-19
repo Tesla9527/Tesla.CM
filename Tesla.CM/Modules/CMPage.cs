@@ -12,7 +12,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tesla.CM.Modules
 {
     public class CMPage
-    {        
+    {
         DriverHelper driverHelper;
         public CMPage(DriverHelper _driverHelper)
         {
@@ -62,11 +62,11 @@ namespace Tesla.CM.Modules
                 Assert.AreEqual(true, driverHelper.GetElement("CMPage", "addContactLink").Displayed);
                 Report.UpdateTestLog("Add Contact", "Add contact successfully", Report.Status.PASS);
             }
-            catch
+            catch (Exception e)
             {
                 Report.UpdateTestLog("Add Contact", "Add contact failed", Report.Status.FAIL);
+                throw new Exception(e.Message);
             }
-           
         }
     }
 }

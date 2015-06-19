@@ -33,14 +33,14 @@ namespace Tesla.CM.Modules
                 var cmDemoLink = driverHelper.GetElement("HomePage", "CMDemoLink");
                 cmDemoLink.Click();
 
-                Assert.AreEqual(true,   driverHelper.GetElement("CMPage", "addContactLink").Displayed);
+                Assert.AreEqual(true, driverHelper.GetElement("CMPage", "addContactLink").Displayed);
                 Report.UpdateTestLog("Navigate to contact manager page", "Navigate to contact manager page successfully", Report.Status.PASS);
             }
-            catch
+            catch (Exception e)
             {
                 Report.UpdateTestLog("Navigate to contact manager page", "Navigate to contact manager page failed", Report.Status.FAIL);
+                throw new Exception(e.Message);
             }
-                    
         }
 
         /// <summary>
@@ -60,10 +60,11 @@ namespace Tesla.CM.Modules
                 Assert.AreEqual(true, driverHelper.GetElement("LoginPage", "LoginLink").Displayed);
                 Report.UpdateTestLog("Logout Contact manager", "Logout Contact manager successfully", Report.Status.PASS);
             }
-            catch
+            catch (Exception e)
             {
                 Report.UpdateTestLog("Logout Contact manager", "Logout Contact manager failed", Report.Status.FAIL);
-            }            
+                throw new Exception(e.Message);
+            }
         }
     }
 }
