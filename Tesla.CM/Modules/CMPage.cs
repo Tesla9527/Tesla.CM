@@ -8,6 +8,7 @@ using System.Data;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shouldly;
 
 namespace Tesla.CM.Modules
 {
@@ -60,6 +61,7 @@ namespace Tesla.CM.Modules
                 createButton.Click();
 
                 Assert.AreEqual(true, driverHelper.GetElement("CMPage", "addContactLink").Displayed);
+                driverHelper.GetElement("CMPage", "addContactLink").Displayed.ShouldBe(true);
                 Report.UpdateTestLog("Add Contact", "Add contact successfully", Report.Status.PASS);
             }
             catch (Exception e)

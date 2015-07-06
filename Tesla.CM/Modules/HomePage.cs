@@ -8,6 +8,7 @@ using System.Data;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shouldly;
 
 namespace Tesla.CM.Modules
 {
@@ -32,8 +33,8 @@ namespace Tesla.CM.Modules
 
                 var cmDemoLink = driverHelper.GetElement("HomePage", "CMDemoLink");
                 cmDemoLink.Click();
-
-                Assert.AreEqual(true, driverHelper.GetElement("CMPage", "addContactLink").Displayed);
+             
+                driverHelper.GetElement("CMPage", "addContactLink").Displayed.ShouldBe(true);
                 Report.UpdateTestLog("Navigate to contact manager page", "Navigate to contact manager page successfully", Report.Status.PASS);
             }
             catch (Exception e)
@@ -56,8 +57,8 @@ namespace Tesla.CM.Modules
 
                 var logoutLink = driverHelper.GetElement("HomePage", "logoutLink");
                 logoutLink.Click();
-
-                Assert.AreEqual(true, driverHelper.GetElement("LoginPage", "LoginLink").Displayed);
+              
+                driverHelper.GetElement("LoginPage", "LoginLink").Displayed.ShouldBe(true);
                 Report.UpdateTestLog("Logout Contact manager", "Logout Contact manager successfully", Report.Status.PASS);
             }
             catch (Exception e)

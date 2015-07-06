@@ -8,6 +8,7 @@ using System.Data;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shouldly;
 
 namespace Tesla.CM.Modules
 {
@@ -51,7 +52,7 @@ namespace Tesla.CM.Modules
                 passwordField.SendKeys(password);
                 loginButtonField.Click();
 
-                Assert.AreEqual(true, driverHelper.GetElement("HomePage", "UserLink").Displayed);
+                driverHelper.GetElement("HomePage", "UserLink").Displayed.ShouldBe(true);
                 Report.UpdateTestLog("Login contact manager", "Login contact manager successfully", Report.Status.PASS);
             }
             catch(Exception e)
