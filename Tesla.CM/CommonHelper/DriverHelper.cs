@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using System.IO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+using System.Threading.Tasks;
 
 namespace Tesla.CM.CommonHelper
 {
@@ -37,6 +39,9 @@ namespace Tesla.CM.CommonHelper
             var obj = JsonConvert.DeserializeObject<Dictionary<string, UIMap>>(collectionStr);
             string type = obj[key].Type;
             string value = obj[key].Value;
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until((d) => { return OpenQA.Selenium.Support.UI.ExpectedConditions.ElementExists(this.getBy(type, value)); });
             return driver.FindElement(this.getBy(type, value));
         }
 
@@ -63,12 +68,116 @@ namespace Tesla.CM.CommonHelper
             {
                 by = By.LinkText(value);
             }
+            if (type.Equals("CssSelector"))
+            {
+                by = By.CssSelector(value);
+            }
             return by;
         }
 
         internal INavigation Navigate()
         {
             return driver.Navigate();
+        }
+
+        internal ITargetLocator SwitchTo()
+        {
+            return driver.SwitchTo();
+        }
+
+        /// <summary>
+        /// Scroll to let element show on page  
+        /// </summary>
+        public void ScrollToElement(IWebElement element)
+        {
+            IJavaScriptExecutor js = driver as IJavaScriptExecutor;
+            js.ExecuteScript("arguments[0].scrollIntoView(true);", element);
+        }
+
+        /// <summary>
+        /// Accepts the alert
+        /// </summary>
+        public void AlertAccept()
+        {
+            IAlert alert = null;
+            int i = 0;
+            while (i++ < 5)
+            {
+                try
+                {
+                    alert = driver.SwitchTo().Alert();
+                    if (alert != null)
+                    {
+                        alert.Accept();
+                    }
+                    break;
+                }
+                catch (NoAlertPresentException e)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    continue;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Get the alert text
+        /// </summary>
+        /// <returns></returns>
+        public string GetAlertString()
+        {
+            int i = 0;
+            IAlert alert = null;
+            string theString = string.Empty;
+            while (i++ < 5)
+            {
+                try
+                {
+                    alert = driver.SwitchTo().Alert();
+                    if (alert != null)
+                    {
+                        theString = alert.Text;
+
+                    }
+                    break;
+                }
+                catch (NoAlertPresentException e)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    continue;
+                }
+            }
+            return theString;
+        }
+
+        /// <summary>
+        /// Switch to the newly opened window
+        /// </summary>
+        public void SwitchToNewWindow()
+        {
+            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            driver.Manage().Window.Maximize();
+        }
+
+        /// <summary>
+        /// Select option in dropdown box
+        /// </summary>
+        public void SelectOption(IWebElement element, string optionContent)
+        {
+            element.Click();
+            var option = new SelectElement(element);
+            option.SelectByText(optionContent);
+        }
+
+        /// <summary>
+        /// Effects throughout the life of web driver
+        /// Set once only if necessary
+        /// </summary>
+        /// <param name="seconds"></param>
+        public void ImplicitlyWait(double seconds)
+        {
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(seconds));
         }
     }
 }
