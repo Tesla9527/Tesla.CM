@@ -179,5 +179,21 @@ namespace Tesla.CM.CommonHelper
         {
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(seconds));
         }
+        
+        public void MoveToElementAndOffsetThenClick(IWebElement element, int x, int y)
+        {
+            Actions builder = new Actions(driver);
+            Actions hoverClick = builder.MoveToElement(element).MoveByOffset(x, y).Click();
+            hoverClick.Build().Perform();
+        }
+
+        public void CloseCurrentTab()
+        {
+            var popup = driver.WindowHandles[1]; // handler for the new tab
+
+            driver.SwitchTo().Window(driver.WindowHandles[1]).Close(); // close the tab
+            driver.SwitchTo().Window(driver.WindowHandles[0]); // get back to the main window
+
+        }
     }
 }
